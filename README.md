@@ -1,42 +1,16 @@
-# Songbird
+# Phoenix
 
-Songbird is a midi device built to aid live electronic performance
+Phoenix is a controller for audio reactive lighting
 
 Hardware:
-- Feather S2
+- Feather M4 Express
 - Featherwing OLED screen
-- Featherwing MIDI i/o
+- TSL2591 Light Sensor
+- MEMS PDM Mic
 
 Software:
 - Circuitpython
-- Midi lib
 - OLED lib
-- Custom music lib
+- Custom LED control lib
 
 
-## Software architecture:
-
-Songbird has two core libraries:
-
-1. Songbird Music:
-This library codifies base building blocks of music theory. Notes build to scales to chords to chord progressions. Time signatures, rythyms, and chord progressions build to tracks. Tracks build to songs.
-
-2. Songbird Interface:
-This library creates the user interface of a songbird. Different songbirds will run different programs, controlled and viewed using the buttons and display.
-
-
-## Todos:
-
-Music lib:
-- Song
-- Track (midi channel, style)
-- Scale (root, mode)
-- Chord (triad, 7th, voicing)
-- Chord progressions (classical, jazz)
-- Rythym (bass / melody)
-- Time signature
-
-Interface lib:
-- Program
-- Display
-- Buttons
