@@ -5,6 +5,9 @@ import busio
 
 from phoenix.interface.display import Display
 from phoenix.interface.buttons import Buttons
+from phoenix.interface.mic import mic_handler
+from phoenix.interface.light_sensor import light_handler
+from phoenix.interface.knobs import Knobs
 
 
 # Display initialization and callback
@@ -20,8 +23,13 @@ def button_1_callback():
 
 buttons = Buttons(button_1_callback)
 
+knobs = Knobs()
 
 # Run loop
 while True:
+    mic_handler()
+    light_handler()
+    knobs.handler()
     buttons.checkClicks()
+    # time.sleep(1)
     time.sleep(0.005)
