@@ -19,7 +19,7 @@ def normalized_rms(values):
 
     return math.sqrt(samples_sum / len(values))
 
-
+dir(board)
 # Main program
 mic = audiobusio.PDMIn(board.TX, board.D12, sample_rate=16000, bit_depth=16)
 samples = array.array('H', [0] * 160)

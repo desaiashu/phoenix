@@ -8,6 +8,8 @@ from phoenix.interface.buttons import Buttons
 from phoenix.interface.mic import mic_handler
 from phoenix.interface.light_sensor import light_handler
 from phoenix.interface.knobs import Knobs
+from phoenix.lights.lights import Lights
+import phoenix.interface.where_pdm
 
 
 # Display initialization and callback
@@ -23,12 +25,13 @@ def button_1_callback():
 
 buttons = Buttons(button_1_callback)
 
-knobs = Knobs()
+lights = Lights()
+knobs = Knobs(lights.lights)
 
 # Run loop
 while True:
-    mic_handler()
-    light_handler()
+    # mic_handler()
+    # light_handler()
     knobs.handler()
     buttons.checkClicks()
     # time.sleep(1)

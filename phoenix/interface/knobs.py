@@ -2,6 +2,7 @@
 import board
 from rainbowio import colorwheel
 from adafruit_seesaw import seesaw, neopixel, rotaryio, digitalio
+from phoenix.lights.lights import Light
 
 addresses = [0x37, 0x36, 0x3A]
 
@@ -9,6 +10,7 @@ class Knob:
     def __init__(
         self,
         num,
+        light
     ):
         self.seesaw = seesaw.Seesaw(board.I2C(), addresses[num-1])
         self.encoder = rotaryio.IncrementalEncoder(self.seesaw)
@@ -19,6 +21,7 @@ class Knob:
         self.last_position = -1
         self.color = 0  # start at red
         self.num = num
+        self.light = light
 
     def handler(self):
         # negate the position to make clockwise rotation positive
@@ -33,6 +36,7 @@ class Knob:
                     self.color -= 1  # Advance backward through the colorwheel.
                 self.color = (self.color + 256) % 256  # wrap around to 0-256
                 self.pixel.fill(colorwheel(self.color))
+                self.light.set_color(colorwheel(self.color))
 
             else:  # If the button is pressed...
                 # ...change the brightness.
@@ -47,8 +51,9 @@ class Knob:
 class Knobs:
     def __init__(
         self,
+        lights
     ):
-        self.knobs = [Knob(1), Knob(2), Knob(3)]
+        self.knobs = [Knob(1, lights[0]), Knob(2, lights[1]), Knob(3, lights[2])]
 
     def handler(self):
         for k in self.knobs:
