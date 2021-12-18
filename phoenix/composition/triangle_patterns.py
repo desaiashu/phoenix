@@ -42,7 +42,7 @@ def inner_clockwise():
     pattern.extend(get_addresses_from_edge(8, 3))
     return pattern
 
-patterns = {
+triangle_patterns = {
     'outer_edge': outer_edge(),
     'outer_counter_clockwise': outer_counter_clockwise(),
     'inner_clockwise': inner_clockwise()
