@@ -1,18 +1,20 @@
-from phoenix.coordinates.triangles import get_outer_edges
-
-OUTER_EDGE_PATTERN = 0
+from .pattern_constructor import patterns
 
 class Pattern:
     def __init__(
         self,
-        pattern = OUTER_EDGE_PATTERN,
-        tail_length = 6
+        pattern = 'outer_edge',
+        tail_length = 6,
+        color = (35, 76, 130),
+        tail_color = (0, 0, 0)
     ):
         self.pattern = pattern
-        self.pattern_array = get_outer_edges()
+        self.pattern_array = patterns[pattern]
         self.length = len(self.pattern_array)
         self.current = 0
         self.tail_length = tail_length
+        self.color = color
+        self.tail_color = tail_color
 
     def get_range(self):
         range = []

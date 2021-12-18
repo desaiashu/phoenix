@@ -85,15 +85,3 @@ def get_addresses_from_edge(triangle, edge):
     for i in range(0, edge_length):
         addresses.append(get_address_from_edge(triangle, edge, i))
     return addresses
-
-def get_outer_edges():
-
-    outer_edges = []
-    outer_edges.extend(get_addresses_from_edge(1, 1))
-    outer_edges.extend(get_addresses_from_edge(2, 1))
-    outer_edges.extend(get_addresses_from_edge(2, 2))
-    outer_edges.extend(get_addresses_from_edge(3, 2))
-    outer_edges.extend(get_addresses_from_edge(3, 3))
-    outer_edges.extend(get_addresses_from_edge(1, 3))
-
-    return outer_edges

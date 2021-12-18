@@ -2,7 +2,7 @@
 import board
 from rainbowio import colorwheel
 from adafruit_seesaw import seesaw, neopixel, rotaryio, digitalio
-from phoenix.lights.lights import Light
+from phoenix.lights.lights import Strip
 
 addresses = [0x37, 0x36, 0x3A]
 
@@ -36,7 +36,7 @@ class Knob:
                     self.color -= 1  # Advance backward through the colorwheel.
                 self.color = (self.color + 256) % 256  # wrap around to 0-256
                 self.pixel.fill(colorwheel(self.color))
-                
+
                 # control of triangle
                 # self.light.set_color(colorwheel(self.color))
 

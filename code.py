@@ -26,7 +26,9 @@ def button_1_callback():
 buttons = Buttons(button_1_callback)
 
 lights = Lights()
-knobs = Knobs(lights.lights)
+knobs = Knobs(lights.strips)
+
+print('yay')
 
 # Run loop
 while True:
