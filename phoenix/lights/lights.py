@@ -1,21 +1,7 @@
-import board
-import neopixel
-
 from phoenix.coordinates.triangles import get_strip_index_from_address
-from .pattern import Pattern
+from phoenix.composition.pattern import Pattern, TRIANGLE, GRID
 from rainbowio import colorwheel
-
-addresses = [board.D10, board.D11, board.D13]
-
-class Strip:
-    def __init__(
-        self,
-        num,
-    ):
-        self.pixel = neopixel.NeoPixel(addresses[num-1], 72)
-
-    def set_color(self, index, color):
-        self.pixel[index] = color
+from .strip import Strip
 
 class Lights:
     def __init__(
@@ -23,8 +9,8 @@ class Lights:
     ):
         self.strips = [Strip(1), Strip(2), Strip(3)]
         self.patterns = [
-                         Pattern('outer_counter_clockwise', 12, (35, 76, 130), (0, 0, 0)),
-                         Pattern('inner_clockwise', 12, (130, 30, 70), (0, 0, 0)),
+                         Pattern(TRIANGLE, 'outer_counter_clockwise', 12, (35, 76, 130), (0, 0, 0)),
+                         Pattern(TRIANGLE, 'inner_clockwise', 12, (130, 30, 70), (0, 0, 0)),
                          ]
         self.clear_lights()
 

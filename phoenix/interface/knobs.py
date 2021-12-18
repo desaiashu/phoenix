@@ -2,7 +2,7 @@
 import board
 from rainbowio import colorwheel
 from adafruit_seesaw import seesaw, neopixel, rotaryio, digitalio
-from phoenix.lights.lights import Strip
+from phoenix.lights.strip import Strip
 
 addresses = [0x37, 0x36, 0x3A]
 
