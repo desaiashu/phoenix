@@ -36,7 +36,9 @@ class Knob:
                     self.color -= 1  # Advance backward through the colorwheel.
                 self.color = (self.color + 256) % 256  # wrap around to 0-256
                 self.pixel.fill(colorwheel(self.color))
-                self.light.set_color(colorwheel(self.color))
+                
+                # control of triangle
+                # self.light.set_color(colorwheel(self.color))
 
             else:  # If the button is pressed...
                 # ...change the brightness.
