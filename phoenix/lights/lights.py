@@ -1,6 +1,6 @@
 from phoenix.coordinates.triangles import get_strip_index_from_address
 from phoenix.composition.pattern import Pattern, TRIANGLE, GRID
-from phoenix.composition.colors import color_patterns
+from phoenix.composition.colors import color_patterns, merge_colors
 from rainbowio import colorwheel
 from .strip import Strip
 
@@ -28,12 +28,22 @@ class Lights:
                 l.pixel[i] = (0, 0, 0)
 
     def handler(self):
+        changes = {}
         for pattern in self.patterns:
-            # TODO: resolve conflicts
             for next_address, next_color in pattern.get_next():
-                self.set_color(next_address, next_color)
+                # Another pattern already wanted to modify this address
+                # We have a conflict. Let's resolve:
+                if next_address in changes:
+                    changes[next_address] = merge_colors(changes[next_address], next_color)
+                else:
+                    changes[next_address] = next_color
+                
+                self.set_color(next_address, changes[next_address])
+
             for tail_address, tail_color in pattern.get_tail():
-                self.set_color(tail_address, tail_color)
+                # As long as some other pattern hasn't decided to write on our pixel then clean up:
+                if tail_address not in changes:
+                    self.set_color(tail_address, tail_color)
 
     def set_color(self, address, color):
         strip_index = get_strip_index_from_address(address)

@@ -50,7 +50,7 @@ class Pattern:
         changes = [(next, self.get_next_color(self.colors, self.colors_length))]
 
         # Get next for children and append to changes
-        if self.children:
+        if self.children is not None:
             for child_pattern in self.children:
                 changes.extend(child_pattern.get_next())
 
@@ -63,7 +63,7 @@ class Pattern:
         tails = [(self.pattern_array[tail], self.get_next_color(self.tail_colors, self.tail_colors_length))]
 
         # Get tail for children
-        if self.children:
+        if self.children is not None:
             for child_pattern in self.children:
                 tails.extend(child_pattern.get_tail())
 
