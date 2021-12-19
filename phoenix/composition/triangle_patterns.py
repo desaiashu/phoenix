@@ -1,7 +1,5 @@
 from phoenix.coordinates.triangles import get_addresses_from_edge
-
-def reverse(pattern):
-    return pattern[::-1]
+from phoenix.coordinates.conversions import reverse
 
 def outer_edge():
     pattern = []

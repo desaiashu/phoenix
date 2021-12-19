@@ -9,6 +9,7 @@ from phoenix.interface.mic import mic_handler
 from phoenix.interface.light_sensor import light_handler
 from phoenix.interface.knobs import Knobs
 from phoenix.lights.lights import Lights
+from phoenix.composition.composer import Composer
 import phoenix.interface.where_pdm
 
 
@@ -27,6 +28,7 @@ buttons = Buttons(button_1_callback)
 
 lights = Lights()
 knobs = Knobs(lights.strips)
+composer = Composer(lights)
 
 print('yay')
 
@@ -34,7 +36,7 @@ print('yay')
 while True:
     # mic_handler()
     # light_handler()
-    lights.handler()
+    composer.handler()
     knobs.handler()
     buttons.checkClicks()
     # time.sleep(1)
