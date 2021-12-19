@@ -1,10 +1,14 @@
+# Triangles is for outer and inner triangle based patterns
+
 # Triangle order:
 ## Outer: Left, right, top, center
-## STRIP_INDEX_INNER: Left, right, top, center
+## Inner: Left, right, top, center
 
 # Edge order:
 ## Base down: Bottom, right, top
 ## Base up: Right, top, left
+
+from phoenix.lights.strip import get_strip_index_from_address, get_address_from_strip_index
 
 STRIP_INDEX_OUTER_LEFT = 1
 STRIP_INDEX_OUTER_RIGHT = 2
@@ -12,7 +16,6 @@ STRIP_INDEX_INNER = 0
 
 LEDS_PER_OUTER_EDGE = 12
 LEDS_PER_INNER_EDGE = 6
-LEDS_PER_STRIP = 72
 
 triangles = {
     1: {
@@ -66,18 +69,6 @@ def get_strip_index_from_edge(triangle, edge, index):
     strip = tri['strip']
     strip_index = tri['index'][(edge-1)*tri['edge_length']+index]
     return {'strip': strip, 'index': strip_index}
-
-def get_address_from_strip_index(strip, index):
-    return strip*LEDS_PER_STRIP+index
-
-def get_strip_index_from_address(address):
-    index = address % LEDS_PER_STRIP
-    strip = (address - index) / LEDS_PER_STRIP
-    address = {
-        'strip': int(strip),
-        'index': index
-    }
-    return address
 
 def get_addresses_from_edge(triangle, edge):
     addresses = []

@@ -1,21 +1,8 @@
-import board
-import neopixel
-
 from phoenix.coordinates.triangles import get_strip_index_from_address
-from .pattern import Pattern
+from phoenix.composition.pattern import Pattern, TRIANGLE, GRID
+from phoenix.composition.colors import color_patterns, merge_colors
 from rainbowio import colorwheel
-
-addresses = [board.D10, board.D11, board.D13]
-
-class Strip:
-    def __init__(
-        self,
-        num,
-    ):
-        self.pixel = neopixel.NeoPixel(addresses[num-1], 72)
-
-    def set_color(self, index, color):
-        self.pixel[index] = color
+from .strip import Strip
 
 class Lights:
     def __init__(
@@ -23,8 +10,22 @@ class Lights:
     ):
         self.strips = [Strip(1), Strip(2), Strip(3)]
         self.patterns = [
-                         Pattern('outer_counter_clockwise', 12, (35, 76, 130), (0, 0, 0)),
-                         Pattern('inner_clockwise', 12, (130, 30, 70), (0, 0, 0)),
+                         Pattern(TRIANGLE, 'outer_counter_clockwise', 12, color_patterns['psychedelic'], [(0, 0, 0)]),
+                         Pattern(TRIANGLE, 'flower_left', 12, color_patterns['psychedelic'], [(0, 0, 0)], [
+                             Pattern(TRIANGLE, 'flower_right', 12, color_patterns['psychedelic'], [(0, 0, 0)])
+                         ]),
+                         Pattern(TRIANGLE, 'cross_pattern_1', 12, color_patterns['psychedelic'], [(0, 0, 0)], [
+                             Pattern(TRIANGLE, 'cross_pattern_2', 12, color_patterns['psychedelic'], [(0, 0, 0)]),
+                             Pattern(TRIANGLE, 'cross_pattern_3', 12, color_patterns['psychedelic'], [(0, 0, 0)]),
+                             Pattern(TRIANGLE, 'cross_pattern_4', 12, color_patterns['psychedelic'], [(0, 0, 0)]),
+                             Pattern(TRIANGLE, 'cross_pattern_5', 12, color_patterns['psychedelic'], [(0, 0, 0)]),
+                             Pattern(TRIANGLE, 'cross_pattern_6', 12, color_patterns['psychedelic'], [(0, 0, 0)])
+                         ]),
+                         Pattern(TRIANGLE, 'outer_counter_clockwise', 12, color_patterns['psychedelic'], [(0, 0, 0)], [
+                             Pattern(TRIANGLE, 'inner_clockwise', 12, [(35, 76, 130)], [(0, 0, 0)]),
+                         ]),
+                         Pattern(TRIANGLE, 'outer_counter_clockwise', 12, [(35, 76, 130)], [(0, 0, 0)]),
+                         Pattern(TRIANGLE, 'inner_clockwise', 12, [(130, 30, 70)], [(0, 0, 0)]),
                          ]
         self.clear_lights()
 
@@ -34,9 +35,22 @@ class Lights:
                 l.pixel[i] = (0, 0, 0)
 
     def handler(self):
+        changes = {}
         for pattern in self.patterns:
-            self.set_color(pattern.get_next(), pattern.color)
-            self.set_color(pattern.get_tail(), pattern.tail_color)
+            for next_address, next_color in pattern.get_next():
+                # Another pattern already wanted to modify this address
+                # We have a conflict. Let's resolve:
+                if next_address in changes:
+                    changes[next_address] = merge_colors(changes[next_address], next_color)
+                else:
+                    changes[next_address] = next_color
+                
+                self.set_color(next_address, changes[next_address])
+
+            for tail_address, tail_color in pattern.get_tail():
+                # As long as some other pattern hasn't decided to write on our pixel then clean up:
+                if tail_address not in changes:
+                    self.set_color(tail_address, tail_color)
 
     def set_color(self, address, color):
         strip_index = get_strip_index_from_address(address)
