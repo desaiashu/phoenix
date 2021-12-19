@@ -14,6 +14,13 @@ class Lights:
                          Pattern(TRIANGLE, 'flower_left', 12, color_patterns['psychedelic'], [(0, 0, 0)], [
                              Pattern(TRIANGLE, 'flower_right', 12, color_patterns['psychedelic'], [(0, 0, 0)])
                          ]),
+                         Pattern(TRIANGLE, 'cross_pattern_1', 12, color_patterns['psychedelic'], [(0, 0, 0)], [
+                             Pattern(TRIANGLE, 'cross_pattern_2', 12, color_patterns['psychedelic'], [(0, 0, 0)]),
+                             Pattern(TRIANGLE, 'cross_pattern_3', 12, color_patterns['psychedelic'], [(0, 0, 0)]),
+                             Pattern(TRIANGLE, 'cross_pattern_4', 12, color_patterns['psychedelic'], [(0, 0, 0)]),
+                             Pattern(TRIANGLE, 'cross_pattern_5', 12, color_patterns['psychedelic'], [(0, 0, 0)]),
+                             Pattern(TRIANGLE, 'cross_pattern_6', 12, color_patterns['psychedelic'], [(0, 0, 0)])
+                         ]),
                          Pattern(TRIANGLE, 'outer_counter_clockwise', 12, color_patterns['psychedelic'], [(0, 0, 0)], [
                              Pattern(TRIANGLE, 'inner_clockwise', 12, [(35, 76, 130)], [(0, 0, 0)]),
                          ]),
