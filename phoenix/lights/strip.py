@@ -2,7 +2,7 @@ import board
 import neopixel
 
 LEDS_PER_STRIP = 72
-addresses = [board.D10, board.D11, board.D13]
+addresses = [board.D18, board.D16, board.D14]
 
 class Strip:
     def __init__(

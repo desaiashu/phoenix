@@ -5,19 +5,19 @@ import busio
 
 from phoenix.interface.display import Display
 from phoenix.interface.buttons import Buttons
-from phoenix.interface.mic import mic_handler
-from phoenix.interface.light_sensor import light_handler
+# from phoenix.interface.mic import mic_handler
+# from phoenix.interface.light_sensor import light_handler
 from phoenix.interface.knobs import Knobs
 from phoenix.lights.lights import Lights
 from phoenix.composition.composer import Composer
-import phoenix.interface.where_pdm
+# import phoenix.interface.where_pdm
 
 
 # Display initialization and callback
 display = Display("", "")
 
-def transport_step_callback(next_note):
-    display.setLabel2(note_from_number(next_note))
+# def transport_step_callback(next_note):
+#     display.setLabel2(note_from_number(next_note))
 
 
 # Button initialization and callback
@@ -38,6 +38,6 @@ while True:
     # light_handler()
     composer.handler()
     knobs.handler()
-    buttons.checkClicks()
+    # buttons.checkClicks()
     # time.sleep(1)
     # time.sleep(0.005)
