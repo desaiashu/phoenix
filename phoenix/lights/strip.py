@@ -1,6 +1,8 @@
 import board
 import neopixel
 
+dir(board)
+
 LEDS_PER_STRIP = 72
 addresses = [board.D18, board.D16, board.D14]
 

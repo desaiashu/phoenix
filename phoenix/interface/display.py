@@ -9,8 +9,8 @@ import adafruit_displayio_sh1107
 class Display:
     def __init__(
         self,
-        text1="",
-        text2="",
+        text1="Speed: _",
+        text2="Bright: _",
         text3="Phoenix"
     ):
         displayio.release_displays()
@@ -54,7 +54,7 @@ class Display:
         splash.append(self.label1)
 
         # Draw some label text
-        self.label2 = label.Label(terminalio.FONT, text=text2, color=0xFFFFFF, x=100, y=8)
+        self.label2 = label.Label(terminalio.FONT, text=text2, color=0xFFFFFF, x=8, y=20)
         splash.append(self.label2)
 
         self.label3 = label.Label(terminalio.FONT, text=text3, scale=2, color=0xFFFFFF, x=9, y=44)
@@ -65,3 +65,7 @@ class Display:
 
     def setLabel2(self, text):
         self.label2.text = text
+
+    def update(self, speed, brightness):
+        self.label1.text = "Speed: " + str(round(speed, 1))
+        self.label2.text = "Bright: " + str(round(brightness, 2))

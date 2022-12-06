@@ -29,10 +29,10 @@ class Edge:
         self.index = index
         self.pixels = self.calc_pixel_addresses()
         self.secondary_pixels = self.calc_secondary_addresses()
-        print(self.axis)
-        print(self.index)
-        print(self.pixels)
-        print(self.secondary_pixels)
+        # print(self.axis)
+        # print(self.index)
+        # print(self.pixels)
+        # print(self.secondary_pixels)
 
     def calc_pixel_addresses(self):
         pixels = []
