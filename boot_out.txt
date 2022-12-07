@@ -1,3 +1,2 @@
-Adafruit CircuitPython 7.0.0 on 2021-09-20; Adafruit Feather M4 Express with samd51j19
-Board ID:feather_m4_express
-boot.py output:
+Adafruit CircuitPython 7.3.3 on 2022-08-29; FeatherS2 with ESP32S2
+Board ID:unexpectedmaker_feathers2
