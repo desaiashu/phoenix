@@ -16,9 +16,14 @@ class Composer:
         display
     ):
         self.patterns = [
-                        #  Pattern(TRIANGLE, 'outer_counter_clockwise', 12, (255, 147, 44), (0, 0, 0)),
+                            Pattern(TRIANGLE, 'triangle_5', 1, (27, 100, 77), (0, 0, 0)),
+                            Pattern(TRIANGLE, 'triangle_6', 1, (27, 100, 77), (0, 0, 0)),
+                            Pattern(TRIANGLE, 'triangle_7', 1, (27, 100, 77), (0, 0, 0)),
+                            # Pattern(TRIANGLE, 'outer_counter_clockwise', 1, (27, 100, 77), (0, 0, 0)),
+                            # Pattern(TRIANGLE, 'inner_clockwise', 2, (190, 147, 44), (0, 0, 0)),
+                            #  Pattern(TRIANGLE, 'inner_clockwise', 12, (255, 0, 0), (0, 0, 0)),
                         #  Pattern(TRIANGLE, 'inner_clockwise', 12, (255, 00, 255), (0, 0, 0)),
-                         Pattern(TRIANGLE, 'inner_clockwise', 12, (255, 147, 44), (0, 0, 0)),
+                        #  Pattern(TRIANGLE, 'inner_clockwise', 12, (255, 147, 44), (0, 0, 0)),
                          ]
         # self.patterns = [   ///// Purple & pink!
         #                  Pattern(TRIANGLE, 'outer_counter_clockwise', 12, (250, 40, 40), (0, 0, 0)),
