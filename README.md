@@ -19,3 +19,8 @@ Software:
 ## LED diagram
 
 <img width="857" alt="Screen Shot 2021-12-18 at 4 38 50 PM" src="https://user-images.githubusercontent.com/178066/146659402-7a5e64f7-bc56-4eec-9cec-db7126da48a0.png">
+
+## Todos
+
+- Update to circuitpython 9 (if not yet)
+- Test neopixel

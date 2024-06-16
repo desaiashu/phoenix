@@ -13,12 +13,14 @@ class Composer:
         lights,
         speed,
         brightness,
+        audio,
+        midi,
         display
     ):
         self.patterns = [
                         #  Pattern(TRIANGLE, 'outer_counter_clockwise', 12, (255, 147, 44), (0, 0, 0)),
                         #  Pattern(TRIANGLE, 'inner_clockwise', 12, (255, 00, 255), (0, 0, 0)),
-                         Pattern(TRIANGLE, 'inner_clockwise', 12, (255, 147, 44), (0, 0, 0)),
+                         Pattern(type=TRIANGLE, pattern='inner_clockwise', tail_length=12, color=(255, 147, 44), tail_color=(0, 0, 0)),
                          ]
         # self.patterns = [   ///// Purple & pink!
         #                  Pattern(TRIANGLE, 'outer_counter_clockwise', 12, (250, 40, 40), (0, 0, 0)),
@@ -35,6 +37,8 @@ class Composer:
         #                  Pattern(TRIANGLE, 'doc_james_8', 3, (130, 30, 70), (0, 0, 0)),
         #                  ]
         self.lights = lights
+        self.audio = audio
+        self.midi = midi
         self.speed = speed
         self.brightness = brightness
         self.display = display
@@ -59,7 +63,7 @@ class Composer:
             brightness = MAX_BRIGHTNESS
         elif brightness < MIN_BRIGHTNESS:
             brightness = MIN_BRIGHTNESS
-        self.brightness = brightness;
+        self.brightness = brightness
         self.update_display()
 
     def speed_handler(self, delta):
@@ -68,7 +72,7 @@ class Composer:
             speed = MAX_SPEED
         elif speed < MIN_SPEED:
             speed = MIN_SPEED
-        self.speed = speed;
+        self.speed = speed
         self.update_display()
 
     def update_display(self):

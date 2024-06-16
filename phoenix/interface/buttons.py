@@ -22,9 +22,9 @@ class Buttons:
 
     def checkClicks(self):
         for i in range(3):
-            if self.state[i] == False and not self.buttons[i].value:
+            if not self.state[i] and not self.buttons[i].value:
                 self.state[i] = True
                 if self.callbacks[i]:
                     self.callbacks[i]()
-            elif self.state[i] == True and self.buttons[i].value:
+            elif not self.state[i] and self.buttons[i].value:
                 self.state[i] = False
