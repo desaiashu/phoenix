@@ -24,3 +24,5 @@ Software:
 
 - Update to circuitpython 9 (if not yet)
 - Test neopixel
+- Test audio / midi
+- Change speed to sync with audio / midi
