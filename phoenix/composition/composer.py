@@ -1,6 +1,7 @@
 from time import sleep
 from .pattern import Pattern, TRIANGLE, GRID
 from .automata import AutomataGrid
+from .colors import colors
 
 MIN_SPEED = 1
 MAX_SPEED = 10
@@ -20,7 +21,7 @@ class Composer:
         self.patterns = [
                         #  Pattern(TRIANGLE, 'outer_counter_clockwise', 12, (255, 147, 44), (0, 0, 0)),
                         #  Pattern(TRIANGLE, 'inner_clockwise', 12, (255, 00, 255), (0, 0, 0)),
-                         Pattern(type=TRIANGLE, pattern='inner_clockwise', tail_length=12, color=(255, 147, 44), tail_color=(0, 0, 0)),
+                         Pattern(type=TRIANGLE, pattern='inner_clockwise', tail_length=12, color=colors.warm_white, tail_color=colors.none),
                          ]
         # self.patterns = [   ///// Purple & pink!
         #                  Pattern(TRIANGLE, 'outer_counter_clockwise', 12, (250, 40, 40), (0, 0, 0)),
