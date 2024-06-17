@@ -18,25 +18,25 @@ class Composer:
         midi,
         display
     ):
-        self.patterns = [
+        # self.patterns = [
                         #  Pattern(TRIANGLE, 'outer_counter_clockwise', 12, (255, 147, 44), (0, 0, 0)),
                         #  Pattern(TRIANGLE, 'inner_clockwise', 12, (255, 00, 255), (0, 0, 0)),
-                         Pattern(type=TRIANGLE, pattern='inner_clockwise', tail_length=12, color=colors.warm_white, tail_color=colors.none),
-                         ]
+                        #  Pattern(TRIANGLE, 'inner_clockwise', 12, (255, 147, 44), (0, 0, 0)),
+                        #  ]
         # self.patterns = [   ///// Purple & pink!
         #                  Pattern(TRIANGLE, 'outer_counter_clockwise', 12, (250, 40, 40), (0, 0, 0)),
         #                  Pattern(TRIANGLE, 'inner_clockwise', 12, (70, 0, 200), (0, 0, 0)),
         #                  ]
-        # self.patterns = [
-        #                  Pattern(TRIANGLE, 'doc_james_1', 6, (35, 76, 130), (0, 0, 0)),
-        #                  Pattern(TRIANGLE, 'doc_james_2', 6, (35, 76, 130), (0, 0, 0)),
-        #                  Pattern(TRIANGLE, 'doc_james_3', 6, (35, 76, 130), (0, 0, 0)),
+        self.patterns = [
+                         Pattern(TRIANGLE, 'doc_james_1', 6, (35, 76, 130), (0, 0, 0)),
+                         Pattern(TRIANGLE, 'doc_james_2', 6, (35, 76, 130), (0, 0, 0)),
+                         Pattern(TRIANGLE, 'doc_james_3', 6, (35, 76, 130), (0, 0, 0)),
         #                  Pattern(TRIANGLE, 'doc_james_4', 6, (35, 76, 130), (0, 0, 0)),
         #                  Pattern(TRIANGLE, 'doc_james_5', 3, (130, 30, 70), (0, 0, 0)),
         #                  Pattern(TRIANGLE, 'doc_james_6', 3, (130, 30, 70), (0, 0, 0)),
         #                  Pattern(TRIANGLE, 'doc_james_7', 3, (130, 30, 70), (0, 0, 0)),
         #                  Pattern(TRIANGLE, 'doc_james_8', 3, (130, 30, 70), (0, 0, 0)),
-        #                  ]
+                         ]
         self.lights = lights
         self.audio = audio
         self.midi = midi
@@ -52,11 +52,13 @@ class Composer:
         i = 1
         for pattern in self.patterns:
             if i < 5 or self.x % 2:
-                self.lights.set_color(pattern.get_next(), pattern.color, self.brightness)
-                self.lights.set_color(pattern.get_tail(), pattern.tail_color, self.brightness)
+                next_pos = pattern.get_next()
+                tail_pos = pattern.get_tail()
+                self.lights.set_color(next_pos, pattern.color, self.brightness)
+                self.lights.set_color(tail_pos, pattern.tail_color, self.brightness)
             self.x += 1
             i += 1
-        sleep(0.1/((self.speed*5)**2))
+        sleep(0.1 / ((self.speed * 5) ** 2))
 
     def brightness_handler(self, delta):
         brightness = self.brightness + delta/2.0
@@ -78,3 +80,7 @@ class Composer:
 
     def update_display(self):
         self.display.update(self.speed, self.brightness)
+
+    def update_pattern_colors(self, new_colors):
+        for pattern, new_color in zip(self.patterns, new_colors):
+            pattern.update_color(new_color)

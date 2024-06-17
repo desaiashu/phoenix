@@ -31,3 +31,12 @@ while True:
         knobs.update()
     count+=1
 
+    # Update colors at specific intervals
+    if count % (composer.speed * 50) == 0:  # Every 50 iterations multiplied by the speed factor
+        new_colors = [(255, 255, 0), (0, 255, 255), (255, 0, 0)]  # Define new colors
+        composer.update_pattern_colors(new_colors)  # Update pattern colors
+
+    if count % (composer.speed * 5) == 0:  # Update knobs at specific intervals
+        knobs.update()
+
+    count += 1

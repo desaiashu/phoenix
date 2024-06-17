@@ -1,4 +1,6 @@
 from .triangle_patterns import triangle_patterns
+import random
+
 
 TRIANGLE = 0
 GRID = 1
@@ -24,14 +26,30 @@ class Pattern:
         self.tail_color = tail_color
 
     def get_next(self):
-        next = self.pattern_array[self.current]
-        self.current = (self.current+1) % self.length
-        return next
+        next_pos = self.pattern_array[self.current]
+        self.current = (self.current + 1) % self.length
+        return next_pos
 
     def get_tail(self):
-        tail = (self.current-self.tail_length) % self.length
-        return self.pattern_array[tail]
+        tail_pos = (self.current - self.tail_length) % self.length
+        return self.pattern_array[tail_pos]
 
+    def should_be_lit(self, position):
+        # Logic to determine if a position should be lit
+        # Example: Only light up if within a certain range of the current position
+        lit_range = 5  # Number of positions to light up
+        return (position >= self.current and position < self.current + lit_range) or \
+               (position + self.length >= self.current and position + self.length < self.current + lit_range)
+
+    def generate_color_for_position(self, position):
+        # Example logic: color gradient based on position
+        r = int((position / self.length) * 255)
+        g = int(((self.length - position) / self.length) * 255)
+        b = 128  # Fixed value for simplicity
+        return (r, g, b)
+
+    def update_color(self, new_color):
+        self.color = new_color
 ## not needed?
     # def get_range(self):
     #     range = []
